@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Lockscreen version="1" frameRate="30">
+    <!--Wallpaper/-->
+	<!-- 锁屏背景 -->
+
+	 <!-- 音乐控制 -->
+    <MusicControl x="0" y="0" w="480" h="480" name="music_control" autoShow="true" visibility="false">
+        
+        <!-- 时间 -->
+	<Time x="#screen_width/2" y="160" align="center" alignV="bottom" src="time.png"/>
+	<!-- 日期 -->
+	<DateTime x="#screen_width/2" y="167" align="center" color="#FFFFFFFF" size="24"/>
+	<!-- 未读短信 -->
+	<Image x="166" y="208" src="icon_sms.png" alpha="#sms_unread_count*255"/>
+	<Text x="166+26" y="208" color="#FFFFFFFF" size="20" format=" %d unread messages" paras="#sms_unread_count" alpha="#sms_unread_count*255"/>
+	<!-- 未接电话 -->
+	<Image x="166" y="239" align="center" alignV="bottom"src="icon_phone.png" alpha="#call_missed_count*255"/>
+	<Text x="166+26" y="239" color="#FFFFFFFF" size="20" format=" %d missed calls" paras="#call_missed_count" alpha="#call_missed_count*255"/>
+		
+	<Text name="music_display" x="#screen_width/2" y="266" align="center" color="#FFFFFFFF" size="19"/>	
+        <!-- 唱片 -->
+        <Image name="music_album_cover" x="104" y="440" align="center" alignV="center" src="photorecord.png"/>
+		
+	<!--Image x="76" y="296" align="center" src="unlock_top_p.png"  alpha="255-#unlocker.state*255"/-->
+		
+        <!-- 上一首 -->
+        <Button name="music_prev" x="37" y="554" w="60" h="60">
+            <Normal>
+                <Image x="37" y="554" align="center" alignV="center" src="music_pre_n.png" alpha="255-#unlocker.state*255"/>
+            </Normal>
+            <Pressed>
+                <Image x="11" y="416" align="center" src="music_l_p.png"/>
+                <Image x="37" y="554" align="center" alignV="center" src="music_pre_n.png"/>
+            </Pressed>
+        </Button>
+        <!-- 下一首 -->
+        <Button name="music_next" x="396" y="554" w="60" h="60">
+            <Normal>
+                <Image x="396" y="554" align="center" alignV="center" src="music_next_n.png" alpha="255-#unlocker.state*255"/>
+            </Normal>
+            <Pressed>
+		<Image x="332" y="416" align="center" src="music_r_p.png"/>
+                <Image x="396" y="554" align="center" alignV="center" src="music_next_n.png"/>
+            </Pressed>
+        </Button>
+        <!-- 播放 -->
+        <Button name="music_play" x="218" y="730" w="60" h="60">
+            <Normal>
+                <Image x="218" y="730" align="center" alignV="center" src="music_play_n.png" alpha="255-#unlocker.state*255"/>
+            </Normal>
+            <Pressed>
+                <Image x="76" y="671" align="center" src="music_btm_p.png"/>
+                <Image x="218" y="730" align="center" alignV="center" src="music_play_n.png"/>
+            </Pressed>
+        </Button>
+        <!-- 暂停 -->
+        <Button name="music_pause" x="218" y="730" w="60" h="60">
+            <Normal>
+                <Image x="218" y="730" align="center" alignV="center" src="music_pause_n.png" alpha="255-#unlocker.state*255"/>
+            </Normal>
+            <Pressed>
+                <Image x="76" y="671" align="center" src="music_btm_p.png"/>
+                <Image x="218" y="730" align="center" alignV="center" src="music_pause_n.png"/>
+            </Pressed>
+        </Button>
+    </MusicControl>
+
+    <!-- 时间 -->
+    <Time x="#screen_width/2" y="160" align="center" alignV="bottom" src="time.png"/>
+    <!-- 日期 -->
+    <DateTime x="#screen_width/2" y="167" align="center" color="#FFFFFFFF" size="24" />
+    <!-- 未读短信 -->
+    <Image x="166" y="208" src="icon_sms.png" alpha="#sms_unread_count*255"/>
+    <Text x="166+26" y="208" color="#FFFFFFFF" size="20" format=" %d unread messages" paras="#sms_unread_count" alpha="#sms_unread_count*255"/>
+    <!-- 未接电话 -->
+    <Image x="166" y="239" align="center" alignV="bottom"src="icon_phone.png" alpha="#call_missed_count*255"/>
+    <Text x="166+26" y="239" color="#FFFFFFFF" size="20" format=" %d missed calls" paras="#call_missed_count" alpha="#call_missed_count*255"/>
+    
+    <Unlocker name="unlocker" bounceInitSpeed="10" bounceAcceleration="1500">
+        <StartPoint x="152" y="475" w="136" h="136">
+	    <NormalState>
+                <Text x="#screen_width/2" y="390" color="#FFFFFFFF" align="center" size="20" category="Charging" format="full of need：%s" paras="#charging_left" alpha="max(#battery_level-#battery_low_level+1,0)*255" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="418" color="#FFFFFFFF" align="center" size="20" category="Charging" format="%d%" paras="#battery_level" alpha="max(#battery_level-#battery_low_level+1,0)*255" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="390" color="#FFFF4208" align="center" size="20" category="Charging" format="full of need：%s" paras="#charging_left" alpha="max(#battery_low_level-#battery_level,0)*255" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="418" color="#FFFF4208" align="center" size="20" category="Charging" format="%d%" paras="#battery_level" alpha="max(#battery_low_level-#battery_level,0)*255" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="390" color="#FFFF4208" align="center" size="20" category="BatteryLow" format="life time：%s" paras="#battery_left" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="418" color="#FFFF4208" align="center"size="20" category="BatteryLow" format="left（%d%）" paras="#battery_level" visibility="#music_control.visibility"/>
+                <Text x="#screen_width/2" y="418" color="#FFFFFFFF" align="center" size="20" alpha="max(0,(1-#unlocker.state))*255" category="BatteryFull"  text="fully charged" visibility="#music_control.visibility"/>                  
+				<Image x="#screen_width/2" y="575" align="center" alignV="center" src="unlock_1.png" category="Normal" visibility="#music_control.visibility">
+                                    <ScaleAnimation>
+                                        <Scale w="48" h="48" time="0"/>
+                                        <Scale w="50" h="50" time="120"/>
+                                        <Scale w="52" h="52" time="240"/>
+                                        <Scale w="54" h="54" time="360"/>
+                                        <Scale w="56" h="56" time="480"/>
+                                        <Scale w="58" h="58" time="600"/>  
+                                        <Scale w="60" h="60" time="720"/>
+                                        <Scale w="58" h="58" time="890"/>
+                                        <Scale w="56" h="58" time="1060"/>
+                                        <Scale w="54" h="54" time="1230"/>
+                                        <Scale w="52" h="52" time="1400"/>
+                                        <Scale w="50" h="50" time="1570"/>
+                                        <Scale w="48" h="48" time="1740"/>
+                                   </ScaleAnimation>
+                                   <AlphaAnimation>
+                                        <Alpha a="175" time="0"/>
+                                        <Alpha a="190" time="120"/>
+                                        <Alpha a="205" time="240"/>
+                                        <Alpha a="220" time="360"/>
+                                        <Alpha a="235" time="480"/>
+                                        <Alpha a="245" time="600"/>
+                                        <Alpha a="255" time="720"/>
+                                        <Alpha a="245" time="890"/>
+                                        <Alpha a="235" time="1060"/>
+                                        <Alpha a="220" time="1230"/>
+                                        <Alpha a="205" time="1400"/>
+                                        <Alpha a="190" time="1570"/>
+                                        <Alpha a="175" time="1740"/>
+                                   </AlphaAnimation>
+			    </Image>
+                            <Image x="#screen_width/2" y="575" align="center" alignV="center" src="unlock_2.png" category="Normal" visibility="#music_control.visibility">
+                                    <ScaleAnimation>
+                                        <Scale w="48" h="48" time="0"/>
+                                        <Scale w="50" h="50" time="120"/>
+                                        <Scale w="52" h="52" time="240"/>
+                                        <Scale w="54" h="54" time="360"/>
+                                        <Scale w="56" h="56" time="480"/>
+                                        <Scale w="58" h="58" time="600"/>  
+                                        <Scale w="60" h="60" time="720"/>
+                                        <Scale w="58" h="58" time="890"/>
+                                        <Scale w="56" h="58" time="1060"/>
+                                        <Scale w="54" h="54" time="1230"/>
+                                        <Scale w="52" h="52" time="1400"/>
+                                        <Scale w="50" h="50" time="1570"/>
+                                        <Scale w="48" h="48" time="1740"/>
+                                   </ScaleAnimation>
+                                   <AlphaAnimation>
+                                        <Alpha a="175" time="0"/>
+                                        <Alpha a="190" time="120"/>
+                                        <Alpha a="205" time="240"/>
+                                        <Alpha a="220" time="360"/>
+                                        <Alpha a="235" time="480"/>
+                                        <Alpha a="245" time="600"/>
+                                        <Alpha a="255" time="720"/>
+                                        <Alpha a="245" time="890"/>
+                                        <Alpha a="235" time="1060"/>
+                                        <Alpha a="220" time="1230"/>
+                                        <Alpha a="205" time="1400"/>
+                                        <Alpha a="190" time="1570"/>
+                                        <Alpha a="175" time="1740"/>
+                                   </AlphaAnimation>
+			    </Image>
+                <Image x="210" y="545" align="center" alignV="center" src="unlock_1.png" category="Charging" visibility="#music_control.visibility"/>
+	    </NormalState>
+	    <PressedState>
+	        <Image x="136" y="470" align="center" alignV="center" src="unlock_press.png"/>
+	    </PressedState>
+        </StartPoint>
+
+        <!-- 此EndPoint专门用来显示-->
+        <EndPoint x="0" y="0" w="0" h="0">
+                   <NormalState>
+                       <Image x="#screen_width/2-10" y="608" align="center" visibility="#music_control.visibility" >
+                           <FramesAnimation>
+                               <Frame src="lock_screen_indicator_anim_0.png" time="100"/>
+                               <Frame src="lock_screen_indicator_anim_1.png" time="200"/>
+                               <Frame src="lock_screen_indicator_anim_2.png" time="400"/>
+                               <Frame src="lock_screen_indicator_anim_3.png" time="600"/>
+                               <Frame src="lock_screen_indicator_anim_4.png" time="800"/>
+                               <Frame src="lock_screen_indicator_anim_5.png" time="1000"/>
+                               <Frame src="lock_screen_indicator_anim_6.png" time="1200"/>
+                               <Frame src="lock_screen_indicator_anim_7.png" time="1400"/>
+                               <Frame src="lock_screen_indicator_anim_8.png" time="1600"/>
+                               <Frame src="lock_screen_indicator_anim_9.png" time="1800"/>
+                         </FramesAnimation>
+                       </Image>
+                       <Image x="#screen_width/2" y="575" align="center" alignV="center" src="unlock_bg.png">
+                           <ScaleAnimation>
+                                <Scale w="436" h="436" time="0"/>
+                                <Scale w="360" h="360" time="80"/>
+                                <Scale w="270" h="270" time="160"/>
+                                <Scale w="180" h="180" time="240"/>
+                                <Scale w="90" h="90" time="320"/>
+                                <Scale w="40" h="40" time="400"/>  
+                                <Scale w="1" h="1" time="420"/>
+                                <Scale w="0" h="0" time="1000000000000000"/>
+                            </ScaleAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="255" time="0"/>
+                                <Alpha a="200" time="150"/>
+                                <Alpha a="150" time="300"/>
+                                <Alpha a="100" time="440"/>
+                                <Alpha a="0" time="450"/>
+                                <Alpha a="0" time="1000000000000000"/>
+                            </AlphaAnimation>
+			</Image>
+                        <Image x="187" y="349" align="center" alignV="center"  src="unlock_camera.png">
+                            <TranslateAnimation>
+                                <Translate x="0" y="0" time="0"/>
+                                <Translate x="0" y="10" time="30"/>
+                                <Translate x="0" y="20" time="60"/>
+				<Translate x="0" y="30" time="90"/>
+                                <Translate x="0" y="40" time="120"/>
+                                <Translate x="0" y="47" time="140"/>
+				<Translate x="0" y="57" time="160"/>
+                                <Translate x="0" y="66" time="180"/>
+                                <Translate x="0" y="74" time="200"/>
+                                <Translate x="0" y="81" time="220"/>
+                                <Translate x="0" y="87" time="240"/>
+                                <Translate x="0" y="92" time="260"/>
+                                <Translate x="0" y="96" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="255" time="0"/>
+                                <Alpha a="255" time="40"/>
+                                <Alpha a="200" time="80"/>
+                                <Alpha a="160" time="120"/>
+                                <Alpha a="128" time="150"/>
+                                <Alpha a="96" time="180"/>
+                                <Alpha a="64" time="210"/>
+                                <Alpha a="32" time="230"/>
+                                <Alpha a="16" time="260"/>
+                                <Alpha a="0" time="270"/>
+                                <Alpha a="0" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="10" y="520" align="center" alignV="center"  src="unlock_phone.png">
+                            <TranslateAnimation>
+                                <Translate x="0"   y="0" time="0"/>
+                                <Translate x="10" y="0" time="30"/>
+                                <Translate x="20" y="0" time="60"/>
+				<Translate x="30" y="0" time="90"/>
+                                <Translate x="40" y="0" time="120"/>
+                                <Translate x="47" y="0" time="140"/>
+				<Translate x="57" y="0" time="160"/>
+                                <Translate x="66" y="0" time="180"/>
+                                <Translate x="74" y="0" time="200"/>
+                                <Translate x="81" y="0" time="220"/>
+                                <Translate x="87" y="0" time="240"/>
+                                <Translate x="92" y="0" time="260"/>
+                                <Translate x="96" y="0" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="255" time="0"/>
+                                <Alpha a="255" time="40"/>
+                                <Alpha a="200" time="80"/>
+                                <Alpha a="160" time="120"/>
+                                <Alpha a="128" time="150"/>
+                                <Alpha a="96" time="180"/>
+                                <Alpha a="64" time="210"/>
+                                <Alpha a="32" time="230"/>
+                                <Alpha a="16" time="260"/>
+                                <Alpha a="0" time="270"/>
+                                <Alpha a="0" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="187" y="700" align="center" alignV="center"  src="unlock_normal.png">
+                            <TranslateAnimation>
+                                <Translate x="0" y="0" time="0"/>
+                                <Translate x="0" y="-10" time="30"/>
+                                <Translate x="0" y="-20" time="60"/>
+				<Translate x="0" y="-30" time="90"/>
+                                <Translate x="0" y="-40" time="120"/>
+                                <Translate x="0" y="-47" time="140"/>
+				<Translate x="0" y="-57" time="160"/>
+                                <Translate x="0" y="-66" time="180"/>
+                                <Translate x="0" y="-74" time="200"/>
+                                <Translate x="0" y="-81" time="220"/>
+                                <Translate x="0" y="-87" time="240"/>
+                                <Translate x="0" y="-92" time="260"/>
+                                <Translate x="0" y="-96" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="255" time="0"/>
+                                <Alpha a="255" time="40"/>
+                                <Alpha a="200" time="80"/>
+                                <Alpha a="160" time="120"/>
+                                <Alpha a="128" time="150"/>
+                                <Alpha a="96" time="180"/>
+                                <Alpha a="64" time="210"/>
+                                <Alpha a="32" time="230"/>
+                                <Alpha a="16" time="260"/>
+                                <Alpha a="0" time="270"/>
+                                <Alpha a="0" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="367" y="520" align="center" alignV="center"  src="unlock_sms.png">
+                            <TranslateAnimation>
+                                <Translate x="0"  y="0" time="0"/>
+                                <Translate x="-10" y="0" time="30"/>
+                                <Translate x="-20" y="0" time="60"/>
+				<Translate x="-30" y="0" time="90"/>
+                                <Translate x="-40" y="0" time="120"/>
+                                <Translate x="-47" y="0" time="140"/>
+				<Translate x="-57" y="0" time="160"/>
+                                <Translate x="-66" y="0" time="180"/>
+                                <Translate x="-74" y="0" time="200"/>
+                                <Translate x="-81" y="0" time="220"/>
+                                <Translate x="-87" y="0" time="240"/>
+                                <Translate x="-92" y="0" time="260"/>
+                                <Translate x="-96" y="0" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="255" time="0"/>
+                                <Alpha a="255" time="40"/>
+                                <Alpha a="200" time="80"/>
+                                <Alpha a="160" time="120"/>
+                                <Alpha a="128" time="150"/>
+                                <Alpha a="96" time="180"/>
+                                <Alpha a="64" time="210"/>
+                                <Alpha a="32" time="230"/>
+                                <Alpha a="16" time="260"/>
+                                <Alpha a="0" time="270"/>
+                                <Alpha a="0" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                   </NormalState>
+            <PressedState>
+		        <Image x="#screen_width/2" y="575" align="center" alignV="center" src="unlock_bg.png">
+                            <ScaleAnimation>
+                                 <Scale w="90" h="90" time="0"/>
+                                 <Scale w="180" h="180" time="50"/>
+                                 <Scale w="270" h="270" time="100"/>
+                                 <Scale w="310" h="310" time="150"/>
+                                 <Scale w="340" h="340" time="200"/>
+                                 <Scale w="370" h="370" time="250"/>
+                                 <Scale w="400" h="400" time="300"/>
+                                 <Scale w="430" h="430" time="350"/>
+                                 <Scale w="436" h="436" time="360"/>
+                                 <Scale w="436" h="436" time="1000000000000000"/>
+                            </ScaleAnimation>
+			</Image>
+                        <Image x="187" y="439" align="center" alignV="center"  src="unlock_camera.png">
+                            <TranslateAnimation>
+                                <Translate x="0" y="0" time="0"/>
+                                <Translate x="0" y="-10" time="30"/>
+                                <Translate x="0" y="-20" time="60"/>
+				<Translate x="0" y="-30" time="90"/>
+                                <Translate x="0" y="-40" time="120"/>
+                                <Translate x="0" y="-47" time="140"/>
+				<Translate x="0" y="-57" time="160"/>
+                                <Translate x="0" y="-66" time="180"/>
+                                <Translate x="0" y="-74" time="200"/>
+                                <Translate x="0" y="-81" time="220"/>
+                                <Translate x="0" y="-87" time="240"/>
+                                <Translate x="0" y="-92" time="260"/>
+                                <Translate x="0" y="-96" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="0" time="0"/>
+                                <Alpha a="16" time="50"/>
+                                <Alpha a="32" time="100"/>
+                                <Alpha a="64" time="150"/>
+                                <Alpha a="96" time="200"/>
+                                <Alpha a="128" time="250"/>
+                                <Alpha a="160" time="350"/>
+                                <Alpha a="200" time="500"/>
+                                <Alpha a="255" time="520"/>
+                                <Alpha a="255" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="98" y="520" align="center" alignV="center"  src="unlock_phone.png">
+                            <TranslateAnimation>
+                                <Translate x="0"   y="0" time="0"/>
+                                <Translate x="-10" y="0" time="30"/>
+                                <Translate x="-20" y="0" time="60"/>
+				<Translate x="-30" y="0" time="90"/>
+                                <Translate x="-40" y="0" time="120"/>
+                                <Translate x="-47" y="0" time="140"/>
+				<Translate x="-57" y="0" time="160"/>
+                                <Translate x="-66" y="0" time="180"/>
+                                <Translate x="-74" y="0" time="200"/>
+                                <Translate x="-81" y="0" time="220"/>
+                                <Translate x="-87" y="0" time="240"/>
+                                <Translate x="-92" y="0" time="260"/>
+                                <Translate x="-96" y="0" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="0" time="0"/>
+                                <Alpha a="16" time="50"/>
+                                <Alpha a="32" time="100"/>
+                                <Alpha a="64" time="150"/>
+                                <Alpha a="96" time="200"/>
+                                <Alpha a="128" time="250"/>
+                                <Alpha a="160" time="350"/>
+                                <Alpha a="200" time="500"/>
+                                <Alpha a="255" time="520"/>
+                                <Alpha a="255" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="187" y="608" align="center" alignV="center"  src="unlock_normal.png">
+                            <TranslateAnimation>
+                                <Translate x="0" y="0" time="0"/>
+                                <Translate x="0" y="10" time="30"/>
+                                <Translate x="0" y="20" time="60"/>
+				<Translate x="0" y="30" time="90"/>
+                                <Translate x="0" y="40" time="120"/>
+                                <Translate x="0" y="47" time="140"/>
+				<Translate x="0" y="57" time="160"/>
+                                <Translate x="0" y="66" time="180"/>
+                                <Translate x="0" y="74" time="200"/>
+                                <Translate x="0" y="81" time="220"/>
+                                <Translate x="0" y="87" time="240"/>
+                                <Translate x="0" y="92" time="260"/>
+                                <Translate x="0" y="96" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="0" time="0"/>
+                                <Alpha a="16" time="50"/>
+                                <Alpha a="32" time="100"/>
+                                <Alpha a="64" time="150"/>
+                                <Alpha a="96" time="200"/>
+                                <Alpha a="128" time="250"/>
+                                <Alpha a="160" time="350"/>
+                                <Alpha a="200" time="500"/>
+                                <Alpha a="255" time="520"/>
+                                <Alpha a="255" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+                       <Image x="271" y="520" align="center" alignV="center"  src="unlock_sms.png">
+                            <TranslateAnimation>
+                                <Translate x="0"  y="0" time="0"/>
+                                <Translate x="10" y="0" time="30"/>
+                                <Translate x="20" y="0" time="60"/>
+				<Translate x="30" y="0" time="90"/>
+                                <Translate x="40" y="0" time="120"/>
+                                <Translate x="47" y="0" time="140"/>
+				<Translate x="57" y="0" time="160"/>
+                                <Translate x="66" y="0" time="180"/>
+                                <Translate x="74" y="0" time="200"/>
+                                <Translate x="81" y="0" time="220"/>
+                                <Translate x="87" y="0" time="240"/>
+                                <Translate x="92" y="0" time="260"/>
+                                <Translate x="96" y="0" time="1000000000000000"/>
+                            </TranslateAnimation>
+                            <AlphaAnimation>
+                                <Alpha a="0" time="0"/>
+                                <Alpha a="16" time="50"/>
+                                <Alpha a="32" time="100"/>
+                                <Alpha a="64" time="150"/>
+                                <Alpha a="96" time="200"/>
+                                <Alpha a="128" time="250"/>
+                                <Alpha a="160" time="350"/>
+                                <Alpha a="200" time="500"/>
+                                <Alpha a="255" time="520"/>
+                                <Alpha a="255" time="1000000000000000"/>
+                            </AlphaAnimation>
+                       </Image>
+	    </PressedState>
+        </EndPoint>
+		
+        <!-- Camera -->
+        <EndPoint x="40" y="-85" w="276" h="480">
+	    <Intent action="android.media.action.STILL_IMAGE_CAMERA" category="android.intent.category.DEFAULT"/>
+	    <ReachedState>
+	        <Image x="187" y="347" align="center" alignV="center" src="unlock_camera_press.png"/>
+	    </ReachedState>
+        </EndPoint>
+		
+        <!-- Sms -->
+        <EndPoint x="215" y="267" w="300" h="355">
+            <Intent action="android.intent.action.MAIN" type="vnd.android-dir/mms-sms" category="android.intent.category.DEFAULT"/>
+            <ReachedState>
+                <Image x="363" y="520" align="center" src="unlock_sms_press.png"/>
+	    </ReachedState>
+        </EndPoint>
+		
+        <!-- UnLock -->
+        <EndPoint x="40" y="550" w="316" h="300">
+            <ReachedState>
+                <Image x="186" y="700" align="center" src="unlock_normal_press.png"/>
+            </ReachedState>
+        </EndPoint>
+		
+        <!-- Phone -->
+        <EndPoint x="-136" y="297" w="276" h="395">
+            <Intent action="android.intent.action.DIAL"/>
+            <ReachedState>
+                <Image x="6" y="520" align="center" src="unlock_phone_press.png"/>
+            </ReachedState>
+        </EndPoint>
+		
+    </Unlocker>
+	
+	<!-- 双击进入音乐控制 -->
+    <Button x="172" y="507" w="136" h="136">
+        <Triggers>
+            <Trigger action="double" target="music_control" property="visibility" value="toggle"/>
+        </Triggers>
+    </Button>
+    <!-- 充电状态中 -->
+    <Image x="240" y="575" align="center" alignV="center" src="charging_progress_light_small.png" category="Charging" alpha="255-#unlocker.state*255" visibility="#music_control.visibility">
+        <ScaleAnimation>
+              <Scale w="150" h="150" time="0"/>
+              <Scale w="150" h="150" time="500"/>
+              <Scale w="130" h="130" time="604"/>
+              <Scale w="100" h="100" time="708"/>
+              <Scale w="80" h="80" time="915"/>
+              <Scale w="50" h="50" time="1500"/>
+         </ScaleAnimation>
+         <AlphaAnimation>
+              <Alpha a="0" time="0"/>
+              <Alpha a="0" time="300"/>
+              <Alpha a="32" time="708"/>
+              <Alpha a="64" time="811"/>
+              <Alpha a="128" time="915"/>
+              <Alpha a="255" time="916"/>
+              <Alpha a="255" time="984"/>
+              <Alpha a="0" time="1500"/>
+         </AlphaAnimation>
+    </Image>
+	
+    <!-- 电量不足时状态 -->
+    <Image x="210" y="545" align="center" alignV="center" src="lowbattery.png" category="BatteryLow" alpha="255-#unlocker.state*255"/>
+    <Image x="240" y="573" align="center" alignV="center" src="lowbattery_ani.png" category="BatteryLow" alpha="255-#unlocker.state*255">
+         <ScaleAnimation>
+              <Scale w="50" h="50" time="0"/>
+              <Scale w="120" h="120" time="1500"/>
+         </ScaleAnimation>
+         <AlphaAnimation>
+              <Alpha a="0" time="0"/>
+              <Alpha a="128" time="715"/>
+              <Alpha a="255" time="716"/>
+              <Alpha a="255" time="784"/>
+              <Alpha a="128" time="785"/>
+              <Alpha a="0" time="1500"/>
+         </AlphaAnimation>
+    </Image>
+    <!-- 电量不足时状态 -->
+    <Image x="240" y="573" align="center" alignV="center" src="lowbattery_ani.png" category="BatteryLow" alpha="255-#unlocker.state*255">
+         <ScaleAnimation>
+              <Scale w="70" h="70" time="0"/>
+              <Scale w="70" h="70" time="716"/>
+              <Scale w="160" h="160" time="1000"/>
+              <Scale w="160" h="160" time="1500"/>
+         </ScaleAnimation>
+         <AlphaAnimation>
+              <Alpha a="0" time="0"/>
+              <Alpha a="0" time="715"/>
+              <Alpha a="64" time="716"/>
+              <Alpha a="0" time="1000"/>
+              <Alpha a="0" time="1500"/>
+         </AlphaAnimation>
+    </Image>
+    <!-- 充电进度光  -->
+    <Image x="210" y="545" src="charging_progress_light_small_l.png" category="Charging" alpha="255-#unlocker.state*255" visibility="#music_control.visibility">
+            <Mask x="0" y="0" src="charging_progress_light_small_lmask.png" centerX="30" centerY="30" angle="-min(#battery_level,50)/50*180"/>
+    </Image>
+    <Image x="240" y="545" src="charging_progress_light_small_r.png" category="Charging" alpha="255-#unlocker.state*255" visibility="#music_control.visibility">
+           <Mask x="-1" y="0" src="charging_progress_light_small_rmask.png" centerX="0" centerY="30" angle="-max(#battery_level-50,0)/50*180"/>
+    </Image>
+    <Image x="210" y="545" src="charging_progress_light_small_l.png" category="BatteryFull" alpha="255-#unlocker.state*255" visibility="#music_control.visibility"/>
+    <Image x="240" y="545" src="charging_progress_light_small_r.png" category="BatteryFull" alpha="255-#unlocker.state*255" visibility="#music_control.visibility"/>
+</Lockscreen>
