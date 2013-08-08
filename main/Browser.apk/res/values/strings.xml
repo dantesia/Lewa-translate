@@ -89,7 +89,7 @@
     <string name="menu_save_snapshot">Сохранить в память устройства</string>
     <string name="snapshot_failed">"Не могу сохранить."</string>
     <string name="contextheader_folder_bookmarkcount">%d закладок</string>
-    <string name="contextheader_folder_empty"Пустая папка</string>
+    <string name="contextheader_folder_empty">Пустая папка</string>
     <string name="contextmenu_openlink">Открыть</string>
     <string name="contextmenu_openlink_newwindow">В новой вкладке</string>
     <string name="contextmenu_openlink_newwindow_background">В фоновой вкладке</string>
