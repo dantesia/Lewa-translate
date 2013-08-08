@@ -131,4 +131,5 @@
 	<string name="pref_title_resethotseats">Сбросить частоиспользуемое</string> 
     <string name="pref_summary_resethotseats">Сбросить.</string> 
     <string name="message_resethotseats">Уверены?</string> 
+	<string name="apprecommend_native">Мои приложения</string>
 </resources>
