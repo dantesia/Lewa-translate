@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="config_workspaceDefaultTransitionEffect">Стандарт</string>
+    <string name="config_workspaceDefaultTransitionEffect">Standard</string>
     <string name="application_name">Лаунчер</string>
     <string name="uid_name">Android Core приложения</string>
     <string name="folder_name">Безымянная папка</string>
