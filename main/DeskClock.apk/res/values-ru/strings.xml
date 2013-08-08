@@ -97,9 +97,9 @@
     <string name="timer_minute">Мин</string>
     <string name="timer_second">Сек</string>
     <string name="repeat_weekend">Выходные</string>
-    <string name="one_minute">Одна минута</string>
-    <string name="five_minute">Пять минут</string>
-    <string name="ten_minute">Десять минут</string>
+    <string name="one_minute">1 минута</string>
+    <string name="five_minute">5 минут</string>
+    <string name="ten_minute">10 минут</string>
     <string name="timer_ring">Напоминить звонком</string>
     <string name="timer_init_start">"Протяните для 
  начала"</string>
